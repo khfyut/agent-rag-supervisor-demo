@@ -1,0 +1,9 @@
+storage/
+eval/reports/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.idea/
+web/node_modules/
+web/dist/
