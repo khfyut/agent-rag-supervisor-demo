@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 执行图节点脉冲动画：节点被点亮时呼吸 */
+@keyframes nodePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.node-active {
+  animation: nodePulse 1.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* 时间线滚动条美化（可选） */
+.timeline-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.timeline-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: rgb(203 213 225);
+}
