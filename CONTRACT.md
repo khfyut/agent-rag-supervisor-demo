@@ -8,7 +8,7 @@
 | 负责人 | 范围 |
 |---|---|
 | root | `CONTRACT.md`、最终路由接线（`App.tsx` / router）、跨模块整合修复、端到端验收 |
-| 子 agent A | `main.py`、`app/rag.py`、`app/api.py`（新增）、`app/kb_service.py`（新增）、`requirements.txt`、后端 `tests/` |
+| 子 agent A | `main.py`、`app/knowledge/rag.py`、`app/api/`（新增）、`app/knowledge/kb_service.py`（新增）、`requirements.txt`、后端 `tests/` |
 | 子 agent B | `web/` 脚手架与共享层：`package.json`、`vite.config.ts`、`tsconfig*.json`、Tailwind/PostCSS 配置、`index.html`、`src/main.tsx`、`src/App.tsx`、`src/types.ts`、`src/api/*`、`src/store/*`、`src/components/*`、`src/pages/AskPage.tsx`、`src/data/presetQuestions.ts`、前端测试 |
 | 子 agent C | 仅 `src/pages/EvalPage.tsx`、`src/pages/KbPage.tsx`、`src/pages/ArchPage.tsx` 及页面局部文件（如 `src/pages/eval/`、`src/pages/kb/`、`src/pages/arch/`、自建 mock 适配） |
 
@@ -16,7 +16,7 @@
 局部类型/局部组件（文件名以 `local` 前缀标注），并在文件头注释「integration: 切换到共享类型/组件」，
 由 root 在整合阶段统一替换。
 
-## 2. 后端接口清单（FastAPI，挂载在 `app/api.py`，前缀 `/api`）
+## 2. 后端接口清单（FastAPI，挂载在 `app/api/`，前缀 `/api`）
 
 | 方法 | 路径 | 请求体 | 响应 |
 |---|---|---|---|

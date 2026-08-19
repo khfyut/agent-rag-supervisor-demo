@@ -16,7 +16,7 @@ from fastapi.testclient import TestClient
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from app import kb_service  # noqa: E402
+from app.knowledge import kb_service  # noqa: E402
 from app.api import app  # noqa: E402
 
 client = TestClient(app)
