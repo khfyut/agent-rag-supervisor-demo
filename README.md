@@ -223,14 +223,3 @@ supervisor --轮次耗尽--> emergency_synthesizer --> guardrail --> END
   - 不通过 → `quality=failed`，诚实告知原因并附已有发现，绝不硬编答案。
 
 验证方式：`python main.py mock "问题" --max-iterations 0` 可强制触发降级路径；`eval/evaluate.py --max-iterations 1` 可批量测降级指标。
-
-## 面试怎么讲这个项目
-
-- 先用「Agent vs Workflow 判断标准」开场，再拿本项目当例证
-- 讲 Supervisor 模式时，画出「循环」而不是「流水线」
-- 讲 RAG 时强调「检索是 Agent 的工具，不是固定的前置步骤」
-- 讲评估时准备 bad case 故事：引用编造 → Reviewer 打回 → 修复后打回率下降
-- 讲场景选型时主动说明：为什么是连锁门店而不是纯电商——平台规则、食安合规、门店数据三方冲突，
-  让 Supervisor 的「裁决」和 Reviewer/Guardrail 的「否决」成为业务必要而非装饰
-- 讲角色池时主动说出「动态选择 vs 自由生成」的取舍：自由生成不可控（安全边界、评估、成本全崩），
-  所以用「预注册角色 + 运行时选择 + 白名单校验」——这比无脑上动态生成更能体现架构判断力
