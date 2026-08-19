@@ -14,7 +14,7 @@ from typing import Any
 from langchain_chroma import Chroma
 from langchain_core.tools import tool
 
-from . import rag
+from app.knowledge import rag
 
 
 def make_tools(vectorstore: Chroma, db_path: Path | None = None) -> dict[str, Any]:

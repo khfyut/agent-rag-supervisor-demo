@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from main import build_runtime  # noqa: E402
-from app.config import load_config  # noqa: E402
-from app.graph import initial_state  # noqa: E402
+from app.core.config import load_config  # noqa: E402
+from app.orchestration.graph import initial_state  # noqa: E402
 from eval.judge import judge  # noqa: E402
 
 CASES_PATH = Path(__file__).resolve().parent / "cases.json"

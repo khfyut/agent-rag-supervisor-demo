@@ -14,10 +14,10 @@ sys.path.insert(0, str(ROOT))
 from langchain_core.language_models.fake_chat_models import FakeMessagesListChatModel  # noqa: E402
 from langchain_core.messages import AIMessage  # noqa: E402
 
-from app.config import build_embeddings, build_llm, load_config  # noqa: E402
-from app.graph import build_graph, initial_state  # noqa: E402
-from app.rag import build_kb, get_vectorstore  # noqa: E402
-from app.tools import make_tools  # noqa: E402
+from app.core.config import build_embeddings, build_llm, load_config  # noqa: E402
+from app.orchestration.graph import build_graph, initial_state  # noqa: E402
+from app.knowledge.rag import build_kb, get_vectorstore  # noqa: E402
+from app.orchestration.tools import make_tools  # noqa: E402
 
 DATA_DIR = ROOT / "data" / "kb"
 PERSIST_DIR = ROOT / "storage" / "chroma"

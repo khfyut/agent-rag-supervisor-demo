@@ -34,7 +34,7 @@
 - 工具白名单：每个角色只能使用注册表中声明的工具（`sql_analyst` 只有只读 SELECT 工具）；
 - 最大轮次硬控：达到上限强制收尾，防止无限循环。
 
-想扩展能力时，往 `app/registry.py` 的角色池里加一条 `WorkerSpec` 即可——这就是「能力扩展性」的落点。
+想扩展能力时，往 `app/orchestration/registry.py` 的角色池里加一条 `WorkerSpec` 即可——这就是「能力扩展性」的落点。
 
 `web_searcher` 需要网络搜索能力：配置 `TAVILY_API_KEY` 时走 Tavily，否则回退 DuckDuckGo；
 两者都不可用时工具会返回明确错误，Supervisor 可以转派其他专家，而不是让 Agent 硬编。
@@ -148,15 +148,22 @@ agent-rag-supervisor/
 ├── main.py                 # CLI：build-kb / build-db / ask / mock / serve
 ├── CONTRACT.md             # 前后端接口契约（v1 锁定版）
 ├── app/
-│   ├── api.py              # FastAPI 服务层（HTTP + SSE，问答/评估/知识库）
-│   ├── kb_service.py       # 知识库文档管理（上传/删除/重建编排）
-│   ├── config.py           # 模型与运行配置
-│   ├── state.py            # 图共享状态
-│   ├── rag.py              # 知识库构建 + 检索 + 引用核验
-│   ├── tools.py            # Agent 工具（检索 / 引用核验）
-│   ├── registry.py         # 角色池定义（可扩展 WorkerSpec）
-│   ├── agents.py           # Supervisor / Reviewer 节点 + Worker 工厂
-│   └── graph.py            # LangGraph 图组装（Supervisor 模式）
+│   ├── api/                       # HTTP API（按业务域拆 routers/）
+│   ├── core/                      # 配置 / 嵌入
+│   │   ├── config.py             # 模型与运行配置
+│   │   └── embeddings.py         # Embeddings 适配层
+│   ├── orchestration/            # 多智能体编排
+│   │   ├── state.py              # 图共享状态
+│   │   ├── registry.py           # 角色池（可扩展 WorkerSpec）
+│   │   ├── guardrail.py          # 守门员节点
+│   │   ├── agents.py             # Supervisor / Reviewer 节点 + Worker 工厂
+│   │   ├── graph.py              # LangGraph 图组装
+│   │   └── tools.py              # Agent 工具（KB / SQL / code）
+│   ├── knowledge/                  # RAG / 知识库
+│   │   ├── rag.py                # 向量检索 + 引用核验
+│   │   └── kb_service.py         # 知识库文档管理（上传/删除/重建编排）
+│   └── observability/              # 运行监控
+│       └── monitor.py              # 追踪每轮运行的 trace 步骤
 ├── eval/
 │   ├── cases.json          # 分级评估集
 │   └── evaluate.py         # 评估脚本 + 指标报告

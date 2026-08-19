@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT))
 from langchain_core.messages import HumanMessage, SystemMessage  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
 
-from app.agents import _extract_json  # noqa: E402
-from app.config import ModelConfig, build_llm  # noqa: E402
+from app.orchestration.agents import _extract_json  # noqa: E402
+from app.core.config import ModelConfig, build_llm  # noqa: E402
 
 JUDGE_PROMPT = """你是严格的 Agent 评估员。对「任务 → Agent 回答」按以下 Rubric 打分（0-5 分整数）：
 1. 正确性：回答是否准确满足任务需求（错误数据、幻觉 = 低分）；

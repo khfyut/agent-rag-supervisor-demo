@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 from typing import Any, Callable
 
-from .config import build_embeddings, load_config
+from app.core.config import build_embeddings, load_config
 from .rag import build_kb
 
 ROOT = Path(__file__).resolve().parent.parent
