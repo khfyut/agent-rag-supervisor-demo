@@ -9,3 +9,6 @@ fastapi>=0.109
 uvicorn>=0.29
 
 # dev 依赖（已安装）：pytest、httpx
+
+# 可观测性：LangSmith 是可选后端,未安装时只会给一次 logger.warning 提示。
+langsmith>=0.10
